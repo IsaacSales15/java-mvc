@@ -1,5 +1,7 @@
 package com.sales.model;
 
+import com.sales.DAO.EmployeeDB;
+
 public class Employee {
     private int id;
     private String name;
@@ -45,5 +47,9 @@ public class Employee {
         this.section = section;
     }
 
+    public void registerEmployeeDAO(Employee employee) {
+        EmployeeDB employeeDB = new EmployeeDB();
+        employeeDB.saveEmployeeDB(employee);
+    }
     
 }
