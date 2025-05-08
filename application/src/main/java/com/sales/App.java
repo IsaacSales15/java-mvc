@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import com.sales.DAO.EmployeeDB;
 
 /**
  * JavaFX App
@@ -18,9 +17,11 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/sales/view/form.fxml"));
+        scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Cadastro de Funcionário");
         stage.show();
     }
 
@@ -29,13 +30,11 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/sales/view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
-        EmployeeDB.createTableIfNotExists();
         launch();
     }
-
 }

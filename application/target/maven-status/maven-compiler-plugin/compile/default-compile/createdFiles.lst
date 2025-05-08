@@ -1,9 +1,8 @@
-com\sales\DAO\index.class
-com\sales\PrimaryController.class
-com\sales\controller\index.class
+com\sales\controller\EmployeeController.class
+com\sales\model\Employee.class
 module-info.class
-com\sales\SecondaryController.class
-com\sales\test\index.class
-com\sales\model\index.class
-com\sales\view\index.class
+com\sales\DAO\ConnectionDB.class
+com\sales\DAO\EmployeeDB.class
+com\sales\test\ConnectionDBTest.class
+com\sales\controller\FormController.class
 com\sales\App.class
