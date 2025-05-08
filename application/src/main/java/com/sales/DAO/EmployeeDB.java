@@ -3,7 +3,6 @@ package com.sales.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import com.sales.model.Employee;
 
@@ -11,21 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class EmployeeDB {
-
-    public static void createTableIfNotExists() {
-        String sql = "CREATE TABLE IF NOT EXISTS employee ("
-                + "id INT PRIMARY KEY, "
-                + "name VARCHAR(100), "
-                + "registration VARCHAR(100), "
-                + "section VARCHAR(100)"
-                + ")";
-        try (Connection conn = ConnectionDB.getConnection();
-                Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void saveEmployeeDB(Employee employee) {
         if (employee == null) {

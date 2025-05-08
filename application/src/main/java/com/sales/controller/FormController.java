@@ -18,8 +18,7 @@ public class FormController {
         String registration = registrationField.getText();
         String section = sectionField.getText();
 
-        System.out.println("Nome: " + name);
-        System.out.println("Matrícula: " + registration);
-        System.out.println("Setor: " + section);
+        EmployeeController employeeController = new EmployeeController();
+        employeeController.registerEmployeeController(name, registration, section);
     }
 }

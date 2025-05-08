@@ -9,12 +9,8 @@ public class ConnectionDB {
         try {
             Connection conn = DriverManager.getConnection("jdbc:h2:./appdb", "sa", "");
             Statement stmt = conn.createStatement();
-            stmt.execute("CREATE TABLE IF NOT EXISTS employee (\"\r\n" + //
-                    "+ \"id INT PRIMARY KEY, \"\r\n" + //
-                    "+ \"name VARCHAR(100), \"\r\n" + //
-                    "+ \"registration VARCHAR(100), \"\r\n" + //
-                    "+ \"section VARCHAR(100)\"\r\n" + //
-                    "+ \")");
+            String sql = "CREATE TABLE IF NOT EXISTS employee (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), registration VARCHAR(100), section VARCHAR(100))";
+            stmt.execute(sql);
             System.out.println("Conexão com H2 realizada com sucesso!");
             return conn;
         } catch (Exception e) {

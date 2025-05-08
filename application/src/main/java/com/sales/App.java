@@ -18,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/sales/view/form.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/sales/view/formView.fxml"));
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Cadastro de Funcionário");
