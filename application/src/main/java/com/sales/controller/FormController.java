@@ -20,5 +20,9 @@ public class FormController {
 
         EmployeeController employeeController = new EmployeeController();
         employeeController.registerEmployeeController(name, registration, section);
+
+        nameField.clear();
+        registrationField.clear();
+        sectionField.clear();
     }
 }
