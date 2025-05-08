@@ -1,3 +1,0 @@
-2025-05-08 11:48:13.187950-03:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO employee ( name, registration, section) VALUES (?, ?, ?, [*])"; expected "DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
-INSERT INTO employee ( name, registration, section) VALUES (?, ?, ?, ) [42001-224]
