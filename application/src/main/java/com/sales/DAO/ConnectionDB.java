@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class ConnectionDB {
-        public Connection getConnection(){
+        public static Connection getConnection(){
         try {
             Connection conn = DriverManager.getConnection("jdbc:h2:./appdb", "sa", "");
             Statement stmt = conn.createStatement();

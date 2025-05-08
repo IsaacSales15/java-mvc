@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import com.sales.DAO.EmployeeDB;
+
 /**
  * JavaFX App
  */
@@ -32,6 +34,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        EmployeeDB.createTableIfNotExists();
         launch();
     }
 
