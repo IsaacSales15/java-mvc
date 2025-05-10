@@ -79,6 +79,7 @@
 
                 <TableView fx:id="employeeTable" prefWidth="720" style="-fx-font-family: 'Segoe UI';">
                     <columns>
+                        <TableColumn text="ID" prefWidth="50"/>
                         <TableColumn text="Nome" prefWidth="240"/>
                         <TableColumn text="Matrícula" prefWidth="150"/>
                         <TableColumn text="Setor" prefWidth="200"/>

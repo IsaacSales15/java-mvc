@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 
 public class EmployeeController {
     public void registerEmployeeController(String name, String registration, String section) {
-        if((name != null && name.length() > 0 ) && (registration != null && registration.length() > 0 ) && (section != null && section.length() > 0 )) {
+        if((name != null && !name.isEmpty()) && (registration != null && !registration.isEmpty()) && (section != null && !section.isEmpty())) {
             Employee employee = new Employee(0, name, registration, section);
             employee.registerEmployeeDAO(employee);
         } else {

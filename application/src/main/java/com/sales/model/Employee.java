@@ -2,6 +2,8 @@ package com.sales.model;
 
 import com.sales.DAO.EmployeeDB;
 
+import java.util.ArrayList;
+
 public class Employee {
     private int id;
     private String name;
@@ -13,6 +15,10 @@ public class Employee {
         this.name = name;
         this.registration = registration;
         this.section = section;
+    }
+
+    public Employee() {
+
     }
 
     public int getId() {
@@ -64,14 +70,16 @@ public class Employee {
         if (getClass() != obj.getClass())
             return false;
         Employee other = (Employee) obj;
-        if (id != other.id)
-            return false;
-        return true;
+        return id == other.id;
     }
 
     public void registerEmployeeDAO(Employee employee) {
         EmployeeDB employeeDB = new EmployeeDB();
         employeeDB.saveEmployeeDB(employee);
+    }
+
+    public ArrayList<Employee> listEmployeeDAO() {
+        return new EmployeeDB().listEmployeesDB();
     }
     
 }

@@ -1,11 +1,8 @@
 package com.sales.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
+import java.sql.*;
+import java.util.ArrayList;
 import com.sales.model.Employee;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -16,18 +13,15 @@ public class EmployeeDB {
             throw new NullPointerException("Employee não pode ser nulo");
         }
 
-        String sql = "INSERT INTO employee ( name, registration, section) VALUES (?, ?, ?)";
-        Connection conn = null;
-        PreparedStatement stmt = null;
+        String sql = "INSERT INTO employee (name, registration, section) VALUES (?, ?, ?)";
 
-        try {
-            conn = ConnectionDB.getConnection();
-            stmt = conn.prepareStatement(sql);
+        try (Connection conn = ConnectionDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, employee.getName());
             stmt.setString(2, employee.getRegistration());
             stmt.setString(3, employee.getSection());
             stmt.execute();
-            conn.commit();
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Sucesso");
@@ -40,30 +34,36 @@ public class EmployeeDB {
             alert.setTitle("Erro");
             alert.setHeaderText("Erro ao cadastrar!");
             alert.showAndWait();
-        } finally {
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setHeaderText("Erro ao fechar o statement!");
-                alert.showAndWait();
-            }
         }
-        try {
+    }
 
-            if (conn != null) {
-                conn.close();
+    public ArrayList<Employee> listEmployeesDB() {
+        String sql = "SELECT * FROM employee";
+        ArrayList<Employee> listEmployees = new ArrayList<>();
+
+        try (Connection conn = ConnectionDB.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rst = stmt.executeQuery()) {
+
+            while (rst.next()) {
+                Employee employee = new Employee();
+                employee.setId(rst.getInt("id"));
+                employee.setName(rst.getString("name"));
+                employee.setRegistration(rst.getString("registration"));
+                employee.setSection(rst.getString("section"));
+                listEmployees.add(employee);
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+
+            System.out.println("Successfully collected data");
+
+        } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Erro");
-            alert.setHeaderText("Erro ao fechar a conexão!");
+            alert.setHeaderText("Erro ao listar os funcionários!");
             alert.showAndWait();
         }
+
+        return listEmployees;
     }
 }
