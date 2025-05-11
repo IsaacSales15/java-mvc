@@ -73,6 +73,8 @@ public class Employee {
         return id == other.id;
     }
 
+    // métodos
+
     public void registerEmployeeDAO(Employee employee) {
         EmployeeDB employeeDB = new EmployeeDB();
         employeeDB.saveEmployeeDB(employee);
