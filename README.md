@@ -37,7 +37,6 @@ The system uses an in-memory **H2 Database** to store employee records, making i
 
   ```bash
   mvn clean install
-  Run the Application:
   ```
 
 4. **Run the Application**
