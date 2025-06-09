@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.ArrayList;
 
 public class FormController {
+
     @FXML
     private TextField nameField;
     @FXML
@@ -19,11 +20,18 @@ public class FormController {
     @FXML
     private TextField sectionField;
 
-    @FXML private TableView<Employee> employeeTable;
-    @FXML private TableColumn<Employee, Integer> idColumn;
-    @FXML private TableColumn<Employee, String> nameColumn;
-    @FXML private TableColumn<Employee, String> registrationColumn;
-    @FXML private TableColumn<Employee, String> sectionColumn;
+    @FXML
+    private TableView<Employee> employeeTable;
+    @FXML
+    private TableColumn<Employee, Integer> idColumn;
+    @FXML
+    private TableColumn<Employee, String> nameColumn;
+    @FXML
+    private TableColumn<Employee, String> registrationColumn;
+    @FXML
+    private TableColumn<Employee, String> sectionColumn;
+
+    private final EmployeeController employeeController = new EmployeeController();
 
     @FXML
     private void initialize() {
@@ -35,15 +43,12 @@ public class FormController {
         loadEmployeesIntoTable();
     }
 
-    // Registra os dados
     @FXML
     private void handleSave() {
-
         String name = nameField.getText();
         String registration = registrationField.getText();
         String section = sectionField.getText();
 
-        EmployeeController employeeController = new EmployeeController();
         employeeController.registerEmployeeController(name, registration, section);
 
         nameField.clear();
@@ -53,12 +58,9 @@ public class FormController {
         loadEmployeesIntoTable();
     }
 
-    // Atualiza a tabela
     private void loadEmployeesIntoTable() {
-        ArrayList<Employee> employeeList = EmployeeController.listEmployeesController();
+        ArrayList<Employee> employeeList = employeeController.listEmployeesController();
         ObservableList<Employee> data = FXCollections.observableArrayList(employeeList);
         employeeTable.setItems(data);
     }
 }
-
-
